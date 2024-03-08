@@ -14,11 +14,12 @@
 //	V1.3: 3/5/2024 - Main Code: Added the Hex to Decimal Conversion
 //	V2.0: 3/6/2024 - Main Code: Removed the Temperature Limit Check
 //	V2.1: 3/7/2024 - Main Code: Added Comments and simplfied code
+//	V3.0: 3/7/2024 - Main Code: Fixed some bugs for Demonstration
 //-----------------------------
 #include "C:\Users\Owner\Downloads\FirstAssemblyMPLAB.X\AssemblyConfig.inc"
 #include <xc.inc> 
 //PROGRAM INPUTS
-#define  measuredTempInput 	0 ; this is the input value from the Temp Sensor
+#define  measuredTempInput 	0; this is the input value from the Temp Sensor
 #define  refTempInput 		15 ; this is the input value from the Keypad
 
 //REGISTERS
@@ -145,9 +146,9 @@ D_2_2:
     MOVFF QU, REF_RMND_H    ;Saving the third digit
 ///////
 MOVLW	measuredTempInput   ;WREG = Temp Sensor Input
-CPFSLT	maxTEMP  ; if 61 < measuretemp
-GOTO	If_Equal    ;if not, go to if equal condition
-GOTO	LED_HEAT    ;if yes, go to LED heat condition
+CPFSLT	refTempInput  ; if measuredTempInput < measuretemp
+GOTO	 LED_HEAT   ;if not, go to if equal condition
+GOTO	 If_Equal   ;if yes, go to LED heat condition
 
 If_Equal:   ;Check if Temp sensor input = Keypad Input
     MOVLW   measuredTempInput ;WREG = Temp sensor input
@@ -170,19 +171,20 @@ if_COOL:  ;Check if needs to turn on cooling
 LED_OFF: ;turn LED off
     MOVLW   0x00
     MOVWF   contREG ;none because there is no action required
+    MOVLW   0x00
     MOVWF   PORTD  ;no led
     SLEEP
     
 LED_HEAT:
     MOVLW   0x1 ;WREG =1
     MOVWF   contREG ;Put WREG value to ContReg
-    MOVLW   0b0000001
+    MOVLW   0x01
     MOVWF   PORTD,a ;Set a bit in portd into 1
     SLEEP
     
 LED_COOL:
     MOVLW   0x1 ;WREG =1
     MOVWF   contREG ;Put WREG value to ContReg
-    MOVLW   0b0000001
+    MOVLW   0x02
     MOVWF   PORTD,a ;Set a bit in portd into 1
     SLEEP
