@@ -3,7 +3,7 @@
 ;---------------------
 ; Program Details:
 ; The purpose of this program is to generate a counter when a switch(es) is pressed. 
-; When Pressing and holding Switch A, the couner is incrementing 
+; When Pressing and holding Switch A, the counter is incrementing 
 ; When it Stop pressing A, it displays the last number
 ; When Pressing and holding Switch B, the couner is decrementing
 ; When it Stop pressing B, it displays the last number
