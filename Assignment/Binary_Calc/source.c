@@ -98,7 +98,7 @@ void main(void) {
                 Program_delay(100,100);
             }
         }
-        if (PORTD > 0){ //Checks for the Second User Input from Keypad
+        if (PORTD > 0){ 
             PORTBbits.RB1 = 1;
             if (PORTBbits.RB6 == 1)
             {
@@ -111,19 +111,19 @@ void main(void) {
         }
         
         
-        //Function to check for operation input on keypad
+        //it verifies the operation input from the keypad
         if (PORTD == 1){
-            Operation_REG = Operations_check(Operation_REG);
+            Operation_REG = Operations_check(Operation_REG);//Assigns keypad op 
+                                            //input to Operation_REG
             Operation_Set = Operation_REG; 
         }
-        
         if (Operation_Set > 0){
             PORTD = 3;
             Operation_Set = 0;
             Program_delay(100,100);
         }
         
-        //Function to check for Y Input for keypad input
+        //Checks for the Second User Input from Keypad
         if (PORTD == 3){
             Y_Input_REG = Keypad_Input(Y_Input_REG); //Assigns keypad  
                                             //input to Y input
@@ -131,12 +131,9 @@ void main(void) {
                 PORTD = 2; //if so, set PortD = 2
                 Program_delay(100,100);
             }
-        
-            
-        //it resets the calculator 
             if (PORTD > 0){
                 PORTBbits.RB1 = 1;  
-                if (PORTBbits.RB6 == 1){ //if zero is pressed, it resets
+                if (PORTBbits.RB6 == 1){ 
                     PORTD = 0;
                     X_Input_REG = 0;
                     Y_Input_REG = 0;
@@ -293,6 +290,5 @@ int Keypad_Input(int what_button){
         }
     return what_button;
 }
-
 
 
