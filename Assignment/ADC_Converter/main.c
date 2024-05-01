@@ -12,7 +12,7 @@
  * Compiler: xc8, 2.4
  * Author: Aaron John Estrada
  * Versions:
- *      V1.0: Original
+ *      V1.0: First Version
 
 */
 // CONFIG1L
@@ -218,16 +218,6 @@ void MSdelay(unsigned int val)
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-/*This code block configures the ADC
-for polling, VDD and VSS references, ADCRC
-oscillator and AN0 input.
-Conversion start & polling for completion
-are included.
- */
 
 
 void ADC_Init(void)
